@@ -34,10 +34,20 @@ def predict():
     predicted_class = class_labels[predicted_class_index]
     confidence = predictions[0][predicted_class_index]
 
+    # Descriptions for each skin disease
+    descriptions = {
+        'Biduran': 'Biduran, atau urtikaria, adalah kondisi kulit yang ditandai dengan gatal, kemerahan, dan munculnya bentol-bentol merah atau putih yang sering berpindah-pindah tempat. Kondisi ini biasanya disebabkan oleh reaksi alergi, infeksi, atau stres.',
+        'Keloid': 'Keloid adalah jaringan parut yang tumbuh berlebihan di area yang terluka, menyebabkan benjolan yang keras dan menonjol. Keloid bisa muncul setelah luka sembuh, seperti setelah operasi, luka bakar, atau jerawat.',
+        'Kurap': 'Kurap adalah infeksi jamur pada kulit yang menyebabkan ruam merah, bersisik, dan gatal. Infeksi ini bisa terjadi di berbagai bagian tubuh, seperti kulit kepala, kaki (tinea pedis), atau tubuh (tinea corporis).',
+        'Melanoma': 'Melanoma adalah jenis kanker kulit yang berkembang dari sel pigmentasi kulit (melanosit). Melanoma sering dimulai sebagai tanda atau tahi lalat baru yang tidak biasa atau perubahan pada tahi lalat yang ada.',
+        'Vitiligo': 'Vitiligo adalah kondisi di mana kulit kehilangan pigmen melanin, menyebabkan bercak-bercak putih di berbagai bagian tubuh. Penyebabnya belum sepenuhnya dipahami, namun diperkirakan merupakan gangguan autoimun.'
+    }
+
     # Send response
     return jsonify({
         'disease': predicted_class,
-        'confidence': float(confidence)
+        'confidence': float(confidence),
+        'description': descriptions[predicted_class]
     })
 
 if __name__ == '__main__':

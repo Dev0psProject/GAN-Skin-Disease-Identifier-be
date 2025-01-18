@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+   name: be-gan-identifier
+   namespace: identifier-app
+spec:
+   replicas: 1
+   selector:
+      matchLabels:
+         app: be-gan-identifier
+   template:
+      metadata:
+         labels:
+            app: be-gan-identifier
+      spec:
+         containers:
+            - name: be-gan-identifier
+              image: mhdusop/be-gan-identifier:1.0.0
+              ports:
+                 - containerPort: 80
+              resources:
+                 limits:
+                    memory: 512Mi
+                    cpu: "1"
+                 requests:
+                    memory: 256Mi
+                    cpu: "0.2"
